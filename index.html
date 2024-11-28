@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <title>Divture Homepage</title>
     <style>
         *{
@@ -15,14 +17,15 @@
         body{
     font-family: Arial, sans-serif;
     line-height: 1.6;
-    background-color: #fcfcfc;
+    background-color: rgb(9, 61, 9);
+    color: rgb(255, 255, 255);
     height: auto;
         }
         .navbar ul li a:hover {
-    color: #000000;
+    color: #79b93e;
         }
         .navbar a {
-    color: rgb(29, 133, 29);
+    color: rgb(255, 255, 255);
         }
         .colu{
             height: 3rem;
@@ -39,18 +42,9 @@
         }
         .help{
             margin-top: 4rem;
-            margin-left: 2rem;
+            margin-left: 6rem;
         }
-        .modal-dialog {
-         
-            width: 90%;
-            max-width: 90%;
-            margin-left: 10rem;
-        }
-        .modal-content {
-          background-color: #e2dddd;
-             width: 90%;
-        }
+       
         .hover-effect {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
@@ -59,336 +53,377 @@
              transform: scale(1.05); 
              box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); 
         }
+        .card-img-top:hover {
+             transform: scale(1.1); 
+             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); 
+        }
+        .modal-dialog {
+         
+         width: 90%;
+         max-width: 90%;
+         margin-left: 10rem;
+        }
+        .modal-content {
+        background-color: #278003;
+        padding: 2rem;
+            width: 90%;
+            color: white;
+        }
+        .container{
+            width: 100%;
+            margin-top: 2rem;
+            margin-left: 2rem;
+        }
+        #map{
+            width: 100%;
+            height: 450px;
+          
+        }
+        .contain button {
+            width: 15rem;
+            margin: 10px;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: transform 0.3s, background-color 0.3s ease;
+        }
+
+        .contain button:hover {
+            background-color: #007bff;
+            transform: scale(1.05);
+        }
+
     </style>
 </head>
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <a class="navbar-brand" href="#" style="padding-left: 1rem;">
-      <img src="1.png" alt="Company Logo" style="height: 30px; width: auto;"> Divture </img>
-    </a>   
-  <div class="container-fluid" style="padding-left: 30rem;">
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" href="index.html" >Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="sustain.html" >Sustainability</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="mitigation.html" >Mitigation</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="talk.html"  >Talk about Endangered Animals</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="conservation.html"  >Conservation Status</a>
-        </li>
-        
-      </ul>
+<nav class="navbar navbar-expand-lg ">
+    <a class="navbar-brand" href="#" style="padding-left: 1rem;">
+        <img src="./images/1.png" alt="Company Logo" style="height: 30px; width: auto;"> Divture </img>
+      </a>   
+    <div class="container-fluid" style="padding-left: 30rem;">
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html" >Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="sustain.html" >Sustainability</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="mitigation.html" >Mitigation</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="talk.html"  >Talk about Endangered Animals</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="conservation.html"  >Conservation Status</a>
+          </li>
+          
+        </ul>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
 <body>
-
     <section class="head">
-        <div class="" style="background-image: url(2.png); height: 25rem; width: 100%; background-position-y: 80%; background-size: cover;">
-          <div class="box" style="height: 15rem; width: 100%; color: white; position: relative;">
-            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); backdrop-filter: blur(3px); z-index: 0; margin-top: 5rem; padding: 3rem;">
-              <h1 style="position: relative; z-index: 1; font-size: 80px; text-align: center; padding-top: 1rem; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;"> Divture Endangered Species</h1>
-            </div>      
+        <div class="" style="background-image: url(./images/2.png); height: 25rem; width: 100%; background-position-y: 80%; background-size: cover;">
+            <div class="box" style="height: 15rem; width: 100%; color: white; position: relative;">
+              <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); backdrop-filter: blur(3px); z-index: 0; margin-top: 5rem; padding: 3rem;">
+                <h1 style="position: relative; z-index: 1; font-size: 80px; text-align: center; padding-top: 1rem; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;"> Divture Endangered Species</h1>
+              </div>      
+            </div>
           </div>
+          <div class="" style="width: 90%; margin-left: 2rem; margin-top: 2rem;">      
+            <p style="font-size: 18px; justify-content: baseline;">Our planet is home to a stunning array of wildlife, each species playing a crucial role in maintaining the balance of ecosystems. However, many of these animals are facing an uncertain future. </p>
+            <p style="font-size: 18px; justify-content: baseline;"> Endangered species are those whose populations have dwindled to dangerously low levels, putting them at risk of extinction. The causes are numerous—habitat loss, climate change, poaching, and invasive species are just a few of the threats that jeopardize their survival.</p> 
+            <h4 style="font-size: 42px; margin-bottom: 2rem;"> 5 Endangered Species in Philippines</h4>
+
+            <div class="container text-center">
+                <div class="row">
+                    <!-- First Card -->
+                        <div class="col-12 mb-4">
+                            <div class="card" style="width: 70rem; background-color: rgb(27, 112, 27); color: white; padding: 1rem;">
+                            <div class="container text-center">
+                                <div class="row">
+                                <div class="col">
+                                    <img src="./images/tarsier.png" class="card-img-top" alt="Tarsier" style="width: 35rem; margin-top: 2rem; margin-bottom: 2rem; transition: transform 0.3s ease, box-shadow 0.3s ease;">
+                                </div>
+                                <div class="col">
+                                    <div class="card-body">
+                                    <h3 class="card-title">1. Tarsier</h3>
+                                    <p class="card-text"> <b>Description:</b> Tarsiers are tiny leaping primates found mostly in Bohol, Philippines. A definite tourist attraction when visiting the island, they are fascinating creatures with big eyes, tiny bodies, and long rat-like tails.</p>
+                                    <p><b>Conservation Status:</b> According to Primate GCAP Report, the total population size of the Philippine tarsier is less than 2,500 individuals, including 700 tarsiers in Bohol’s Forest. Currently, this species is classified on the IUCN Red List as near threatened (NT) and its numbers continue to decrease.</p>
+                                    <!-- Trigger the Modal -->
+                                    <a href="#" class="btn btn-primary hover-effect" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="updateModal()">More info</a>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>            
+                            </div>
+                        </div>
+                    
+                        <!-- Modal -->
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" style="width: 100%;">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Tarsier Located</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="container text-center">
+                                    <div class="row">
+                                        <div class="col-md-6" style="padding-bottom: 2rem; padding-left: 2rem;">
+                                        <img id="modalImage" src="./images/bohol.png" class="card-img" alt="Image" style="height: 25rem; width: 20rem; margin-top: 2rem;">
+                                        </div>
+                            
+                                        <div class="col-md-6">
+                                        <div class="modal-body">
+                                            <h3><b id="modalLocation">Bohol, Philippines</b></h3>
+                                            <p></p>
+                                            <p>Tarsiers are the only known carnivorous primates and prey on insects, lizards, and sometimes even snakes. They usually cling upright to trees and branches and can live in monogamous pairs.</p>
+                                            <p>Tarsiers are easily stressed and become self-destructive when they are held in captivity or even just touched—so please never cage or pet them.</p>                                     
+                                            <p>Learn more about Tarsier <a href="https://www.ran.org/wildlife-factsheet/tarsier/" target="_blank"> Philippine Tarsier page </a></p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    </div>  
+                                </div>
+                                </div>
+                            </div>
+
+                    <!-- Second Card -->
+                        <div class="col-12 mb-4">
+                            <div class="card" style="width: 70rem; background-color: rgb(27, 112, 27); color: white; padding: 1rem;">
+                                <div class="container text-center">
+                                    <div class="row">
+                                        <div class="col">
+                                            <img src="./images/deer.png" class="card-img-top" alt="Philippine Mouse Deer" style="width: 35rem; margin-top: 2rem; margin-bottom: 2rem; transition: transform 0.3s ease, box-shadow 0.3s ease;">
+                                        </div>
+                                        <div class="col">
+                                            <div class="card-body">
+                                                <h3 class="card-title">2. Philippine Mouse Deer</h3>
+                                                <p class="card-text"> 
+                                                    <b>Description:</b> The critically endangered Philippine mouse deer, also known as pilandok or the Balabac chevrotain, is a unique creature only found in the islands of Palawan. They are small in stature and resemble exactly what their name describes: a mix of a mouse and a deer.
+                                                </p>
+                                                <p>
+                                                    <b>Conservation Status:</b> The IUCN Red List and other sources don’t provide the total population of the Philippine mouse-deer. However, in 2006 it was reported that at least 21 free-living individuals occurred on Calauit Island. Currently, this species is classified as Endangered (EN) on the IUCN Red List, and its numbers today are decreasing.
+                                                </p>
+                                                <a href="#" class="btn btn-primary hover-effect" data-bs-toggle="modal" data-bs-target="#exampleModal1" onclick="updateModal()">More info</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>            
+                            </div>
+                        </div>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" style="width: 100%;">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Philippine Mouse Deer Located</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="container text-center">
+                                        <div class="row">
+                                            <div class="col-md-6" style="padding-bottom: 2rem; padding-left: 2rem;">
+                                                <img id="modalImage" src="./images/balabac.png" class="card-img" alt="Image" style="height: 25rem; width: 25rem; margin-top: 2rem;">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="modal-body">
+                                                    <h3><b id="modalLocation">Balabac, Palawan, Philippines</b></h3>
+                                                    <p>The Philippine mouse-deer is a small, secretive ruminant native to the Philippines. It has a black and brown coat with white stripes on the throat and chest.</p> 
+                                                    <p>Each individual hair has sections of different colors—the base is generally light (ranging from white to ashy brown), with a tawny, orange, or brown midsection, and a long black tip. </p>
+                                                    <p>A little something you probably didn't know is that it does not belong to the deer family. It is nocturnal and eats mostly plants, leaves, fruits, and sometimes insects.</p>
+                                                    <p>Learn more about the Philippine mouse-deer on the <a href="https://www.fondazioneslowfood.com/en/ark-of-taste-slow-food/philippine-mouse-deer/" target="_blank">Philippine mouse-deer page</a>.</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>  
+                                </div>
+                            </div>
+                        </div>
+
+
+                    <!-- Third Card -->
+                    <div class="col-12 mb-4">
+                        <div class="card" style="width: 70rem; background-color: rgb(27, 112, 27); color: white; padding: 1rem;">
+                            <div class="container text-center">
+                                <div class="row">
+                                    <div class="col">
+                                        <img src="./images/turtle.png" class="card-img-top" alt="..." style="width: 35rem; margin-top: 2rem; margin-bottom: 2rem; transition: transform 0.3s ease, box-shadow 0.3s ease;">
+                                    </div>
+                                    <div class="col">
+                                        <div class="card-body">
+                                            <h3 class="card-title"> 3. Philippine Forest Turtle</h3>
+                                            <p class="card-text"> <b>Description:</b> The Philippine Forest Turtle, found in Palawan, is among the most critically endangered turtle species in the world.</p>
+                                            <p><b>Conservation Status: </b>The IUCN Red List and other sources don’t provide the number of the Philippine forest turtle total population size. Currently, this species is classified as Critically Endangered (CR) on the IUCN Red List.</p>
+                                            <a href="#" class="btn btn-primary hover-effect" data-bs-toggle="modal" data-bs-target="#exampleModal2" onclick="updateModal()">More info</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>            
+                        </div>
+                    </div>
+                   
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" style="width: 100%;">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Philippine Forest Turtle Located</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="container text-center">
+                                            <div class="row">
+                                                <div class="col-md-6" style="padding-bottom: 2rem; padding-left: 2rem;">
+                                                    <img id="modalImage" src="./images/palawan.png" class="card-img" alt="Image" style="height: 25rem; width: 25rem; margin-top: 2rem;">
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="modal-body">
+                                                        <h3><b id="modalLocation"> Palawan, Philippines</b></h3>
+                                                        <p>The Philippine Forest Turtle, found in Palawan, is among the most critically endangered turtle species in the world.</p>
+                                                        <p>For a while, the Philippine Forest Turtle was believed to have been extinct, but a few specimens were found again somewhere in Northern Palawan. This brought the species into existence again in 2004.</p>
+                                                        <p>Learn more about Philippine forest turtle <a href="https://animalia.bio/philippine-forest-turtle" target="_blank"> Philippine forest turtle page </a></p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>  
+                                    </div>
+                                </div>
+                            </div>
+
+                    <!-- Fourth Card -->
+                    <div class="col-12 mb-4">
+                        <div class="card" style="width: 70rem; background-color: rgb(27, 112, 27); color: white; padding: 1rem;">
+                            <div class="container text-center">
+                                <div class="row">
+                                    <div class="col">
+                                        <img src="./images/crocodile.png" class="card-img-top" alt="..." style="width: 35rem; margin-top: 2rem; margin-bottom: 2rem; transition: transform 0.3s ease, box-shadow 0.3s ease;">
+                                    </div>
+                                    <div class="col">
+                                        <div class="card-body">
+                                            <h3 class="card-title">4. Philippine Crocodile</h3>
+                                            <p class="card-text"> <b>Description:</b> The critically endangered Philippine crocodile is said to have a diet of mostly fish, small mammals, birds, and snails—this, in turn, helps farmers in controlling those pests on the rice fields.</p>
+                                            <p><b>Conservation Status: </b>According to the IUCN Red List, the total Philippine crocodile population size is around 92-137 mature individuals. Currently this species is classified as Critically Endangered (CR) and its numbers today are decreasing.</p>
+                                            <a href="#" class="btn btn-primary hover-effect" data-bs-toggle="modal" data-bs-target="#exampleModal3" onclick="updateModal()">More info</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>            
+                        </div>
+                    </div>
+                    
+                     <!-- Modal -->
+                     <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" style="width: 100%;">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Philippine Crocodile Located</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="container text-center">
+                                    <div class="row">
+                                        <div class="col-md-6" style="padding-bottom: 2rem; padding-left: 2rem;">
+                                            <img id="modalImage" src="./images/dalupiri.png" class="card-img" alt="Image" style="height: 25rem; width: 25rem; margin-top: 2rem;">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="modal-body">
+                                                <h3><b id="modalLocation"> Dalupiri, Luzon and Mindanao, Philippines</b></h3>
+                                                <p style="font-size: 16px;">Philippine crocodiles are relatively small reptiles, with broad snouts and thick bony plates on their backs. They have between 66 and 68 teeth which regularly fall out, to be replaced by new ones. Their golden brown color darkens as they grow. </p>
+                                                 <p style="font-size: 16px;">This is a fairly small species, reaching breeding maturity at 1.5 m (4 ft 11 in) and 15 kg (33 lb) in both sexes. A 69-kilogram (152 lb) individual was found to have a bite force of 2,736 N (615 lbf). Adults rarely exceed 2.7 m (8 ft 10 in) and 90 kg (200 lb), and only the largest males attain record maximum size of up to 3.5 m (11 ft), perhaps reaching the maximum weight of 210 kg (460 lb) in exceptional individuals. The females are a little smaller than males.</p>
+                                                <p style="font-size: 16px;">Learn more about Philippine crocodile <a href="https://www.londonzoo.org/whats-here/animals/philippine-crocodile" target="_blank"> Philippine crocodile page </a></p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>  
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Fifth Card -->
+                    <div class="col-12 mb-4">
+                        <div class="card" style="width: 70rem; background-color: rgb(27, 112, 27); color: white; padding: 1rem;">
+                            <div class="container text-center">
+                                <div class="row">
+                                    <div class="col">
+                                        <img src="./images/tamaraw.png" class="card-img-top" alt="..." style="width: 35rem; margin-top: 2rem; margin-bottom: 2rem; transition: transform 0.3s ease, box-shadow 0.3s ease;">
+                                    </div>
+                                    <div class="col">
+                                        <div class="card-body">
+                                            <h3 class="card-title">5. Tamaraw </h3> 
+                                            <p class="card-text"> <b>Description:</b> The Tamaraw is a dwarf buffalo that lives in only one place in the world—Mindoro Island, Philippines. It is classified as critically endangered.</p>
+                                            <p><b>Conservation Status: </b>According to the IUCN Red List, the total population size of tamaraw is around 220-300 mature individuals. This species numbers are decreasing and it is currently classified as Critically Endangered (CR) on the IUCN Red List.</p>
+                                            <a href="#" class="btn btn-primary hover-effect" data-bs-toggle="modal" data-bs-target="#exampleModal4" onclick="updateModal()">More info</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>            
+                        </div>
+                    </div>
+                     <!-- Modal -->
+                     <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" style="width: 100%;">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Tamaraw Located</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="container text-center">
+                                    <div class="row">
+                                        <div class="col-md-6" style="padding-bottom: 2rem; padding-left: 2rem;">
+                                            <img id="modalImage" src="./images/mindoro.png" class="card-img" alt="Image" style="height: 25rem; width: 25rem; margin-top: 2rem;">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="modal-body">
+                                                <h3><b id="modalLocation"> Mindoro Island, Philippines</b></h3>
+                                                <p style="font-size: 16px;">Tamaraw are found only on the island of Mindoro in the Philippines. They prefer tropical highland forested areas and are usually found in thick brush, near open-canopied glades. Within their mountainous environment, tamaraws will usually be found not far from sources of water. They live in moist areas such as marshes and grasslands.</p>
+                                                 <p style="font-size: 16px;">Tamaraw are naturally diurnal animals, however, recently they became nocturnal in order to avoid human contact. They are generally solitary and do not occur in herds or smaller packs and are often found alone. Only juveniles may gather in herds and establish a hierarchy. Males and females may associate all year round but this interaction lasts only a few hours. Males are often solitary and apparently aggressive while adult females can be alone, accompanied by a bull, or three young of different ages.</p>
+                                                <p style="font-size: 16px;">Learn more about Tamaraw <a href="https://www.ultimateungulate.com/Artiodactyla/Bubalus_mindorensisFull.html" target="_blank"> Philippine Tamaraw page </a></p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>  
+                            </div>
+                        </div>
+                    </div>
+            </div>
         </div>
-        <div class="" style="width: 90%; margin-left: 2rem; margin-top: 2rem;">      
-          <p style="font-size: 18px; justify-content: baseline;">Our planet is home to a stunning array of wildlife, each species playing a crucial role in maintaining the balance of ecosystems. However, many of these animals are facing an uncertain future. </p>
-          <p style="font-size: 18px; justify-content: baseline;"> Endangered species are those whose populations have dwindled to dangerously low levels, putting them at risk of extinction. The causes are numerous—habitat loss, climate change, poaching, and invasive species are just a few of the threats that jeopardize their survival.</p> 
-          <h4 style="font-size: 42px; margin-bottom: 2rem;"> 5 Endangered Species in Philippines</h4>
-      
-          <div class="container text-center">
-            <div class="row">
-              <div class="col">
-                <img src="tarsier.png" alt="" style="height: 25rem; width: 100%; margin-left: 2rem;">
-              </div>
-              <div class="col" style="padding-top: 5rem;">
-                <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal" class="card-link">
-                  <div class="card hover-effect" style="width: 18rem; margin-left: 5rem;">
-                    <img src="modtarsier.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h5 class="card-title">Click for more</h5>
-                    </div>
-                  </div>
-                </a>    
-              </div>
-            </div>
-          </div>
-           
-          <!-- Modal -->
-          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" style="width: 100%;">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Tarsier Located</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="container text-center">
-                  <div class="row">
-                    <div class="col-md-6" style="padding-bottom: 2rem; padding-left: 2rem;">
-                      <img src="3.png" class="card-img-top" alt="..." style="height: 25rem; width: 20rem;">
-                    </div>
-          
-                    <div class="col-md-6">
-                      <div class="modal-body">
-                        <h3><b>Bohol, Philippines</b></h3>
-                        <h5 style="font-size: 28px; padding-bottom: 2rem;">Conservation Status:<h5>
-                        <p>According to Primate GCAP Report, the total population size of the Philippine tarsier is less than 2,500 individuals, including 700 tarsiers in Bohol’s Forest. Currently, this species is classified on the IUCN Red List as near threatened (NT) and its numbers continue to decrease.</p>
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>  
-              </div>
-            </div>
-          </div>
-          
-          <div class="tarsier">
-            
-            <h4>1. Tarsier</h4>
-            <p>Tarsiers are tiny leaping primates found mostly in Bohol, Philippines. A definite tourist attraction when visiting the island, they are fascinating creatures with big eyes, tiny bodies, and long rat-like tails.</p>
-            <P>Tarsiers are the only known carnivorous primates and prey on insects, lizards, and sometimes even snakes. They usually cling upright to trees and branches and can live in monogamous pairs.</P>
-            <p>Tarsiers are easily stressed and become self-destructive when they are held in captivity or even just touched—so please never cage or pet them.</p>
-            <p>The species is not critically endangered but its population is threatened, so let's hope these lovable creatures never get to that critical point.</p>
-            <p>Learn more about Tarsier <a href="https://www.ran.org/wildlife-factsheet/tarsier/" target="_blank"> Philippine Tarsier page </a></p>
-  
-          </div>
-  
-          <div class="container text-center">
-            <div class="row">
-              <div class="col">
-                <img src="deer.png" alt="" style="height: 25rem; width: 100%; margin-left: 2rem;">
-              </div>
-              <div class="col" style="padding-top: 2.5rem;">
-                <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal1" class="card-link">
-                  <div class="card hover-effect" style="width: 18rem; margin-left: 5rem;">
-                    <img src="5.png" class="card-img-top" alt="..." style="height: 15rem;">
-                    <div class="card-body">
-                      <h5 class="card-title">Click for more</h5>
-                    </div>
-                  </div>
-                </a>    
-              </div>
-            </div>
-          </div>
-          <!-- Modal -->
-          <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" style="width: 100%;">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Philippine mouse deer Located</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="container text-center">
-                  <div class="row">
-                    <div class="col-md-6" style="padding-bottom: 2rem; padding-left: 2rem;">
-                      <img src="4.png" class="card-img-top" alt="..." style="height: 25rem; width: 20rem;">
-                    </div>
-          
-                    <div class="col-md-6">
-                      <div class="modal-body">
-                        <h3><b> Balabac, Palawan, Philippines</b></h3>
-                        <h5 style="font-size: 28px; padding-bottom: 2rem;">Conservation Status:<h5>
-                          <p>The IUCN Red List and other sources don’t provide the number of the Philippine mouse-deer total population size. However, in 2006 it was reported that at least 21 free-living individuals occur on Calauit Island. Currently, this species is classified as Endangered (EN) on the IUCN Red List and its numbers today are decreasing.</p>
-                        </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>  
-              </div>
-            </div>
-          </div>
+    </section>
 
-          <div class="deer">
-            
-            <h4>2. Philippine Mouse Deer</h4>
-            <p>The critically endangered Philippine mouse deer, also known as pilandok or the Balabac chevrotain, is a unique creature only found in the islands of Palawan. They are absolutely small in stature and resemble exactly what their name describes: a mix of a mouse and a deer.</p>
-            <p>A little something you probably didn't know is that it does not belong to the deer family. It is nocturnal and eats mostly plants, leaves, fruits, and sometimes insects.</p>
-            <p>Learn more about Philippine mouse-deer <a href="https://www.fondazioneslowfood.com/en/ark-of-taste-slow-food/philippine-mouse-deer/" target="_blank"> Philippine mouse-deer page </a></p>
-          </div>
-       
-          <div class="container text-center">
+    <section >
+        <div class="container text-center">
             <div class="row">
-              <div class="col">
-                <img src="turtle.png" alt="" style="height: 25rem; width: 100%; margin-left: 2rem;">
-              </div>
-              <div class="col" style="padding-top: 2.5rem;">
-                <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal2" class="card-link">
-                  <div class="card hover-effect" style="width: 18rem; margin-left: 5rem;">
-                    <img src="6.png" class="card-img-top" alt="..." style="height: 15rem;">
-                    <div class="card-body">
-                      <h5 class="card-title">Click for more</h5>
+                <div class="col-8 mb-4">
+                    <div class="container">
+                        <div id="map"></div>
                     </div>
-                  </div>
-                </a>    
-              </div>
-            </div>
-          </div>
-          <!-- Modal -->
-          <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" style="width: 100%;">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Philippine Forest Turtle Located</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="container text-center">
-                  <div class="row">
-                    <div class="col-md-6" style="padding-bottom: 2rem; padding-left: 2rem;">
-                      <img src="7.png" class="card-img-top" alt="..." style="height: 25rem; width: 20rem;">
+                <div class="col-4 mb-4">
+                    <div class="contain" style="width: 50%; margin-top: 4rem; margin-left: 4rem;">
+                        <button class="btn btn-primary" onclick="moveToLocation(9.863678, 124.200954, 'Bohol')">Tarsier is Located</button>
+                        <button class="btn btn-primary" onclick="moveToLocation(7.946300, 117.002571, 'Balabac, Palawan, Philippines')">Philippine Mouse Deer is Located</button>
+                        <button class="btn btn-primary" onclick="moveToLocation(10.362795, 119.275818, 'Northern Palawan, Philippines')">Philippine Forest Turtle is located</button>
+                        <button class="btn btn-primary" onclick="moveToLocation(19.084137, 121.221256, 'Dalupiri Island')">Philippine Crocodile is Located</button>
+                        <button class="btn btn-primary" onclick="moveToLocation(12.864607, 121.138000, 'Mindoro')">Tamaraw is Located</button>
                     </div>
-          
-                    <div class="col-md-6">
-                      <div class="modal-body">
-                        <h3><b> Northern Palawan, Philippines</b></h3>
-                        <h5 style="font-size: 28px; padding-bottom: 2rem;">Conservation Status:<h5>
-                        <p>The Philippine forest turtle is an enigmatic freshwater turtle species, it exerts great fascination for turtle hobbyists. Due to the previous inability to locate it in the wild, the main threats to this species are thought to be habitat loss and potential pressure from collectors. Local Palawan people are known to keep these turtles in water troughs for domestic pigs, as these are supposed to bring luck for the household and the pigs, although it is not known if this luck is shared by the turtles.</p>
-  
-                        </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>  
-              </div>
-            </div>
-          </div>
-
-          <div class="turtle">
-            <h4> 3. Philippine Forest Turtle</h4>
-            <p>The Philippine Forest Turtle, found in Palawan, is among the most critically endangered turtle species in the world.</p>
-            <p>For a while, the Philippine Forest Turtle was believed to have been extinct, but a few specimens were found again somewhere in Northern Palawan. This brought the species into existence again in 2004.</p>
-            <p>Unfortunately, this rediscovery brought about a negative effect as it made poachers get into a frenzy of capturing the turtles to sell as pets, make them into traditional medicine, and even food.</p>
-            <p>Learn more about Philippine forest turtle <a href="https://animalia.bio/philippine-forest-turtle" target="_blank"> Philippine forest turtle page </a></p>
-          </div>
-  
-          <div class="container text-center">
-            <div class="row">
-              <div class="col">
-                <img src="crocodile.png" alt="" style="height: 25rem; width: 100%; margin-left: 2rem;">
-              </div>
-              <div class="col" style="padding-top: 2.5rem;">
-                <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal4" class="card-link">
-                  <div class="card hover-effect" style="width: 18rem; margin-left: 5rem;">
-                    <img src="8.png" class="card-img-top" alt="..." style="height: 15rem;">
-                    <div class="card-body">
-                      <h5 class="card-title">Click for more</h5>
-                    </div>
-                  </div>
-                </a>    
-              </div>
-            </div>
-          </div>
-          <!-- Modal -->
-          <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" style="width: 100%;">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Philippine Crocodile Located</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="container text-center">
-                  <div class="row">
-                    <div class="col-md-6" style="padding-bottom: 2rem; padding-left: 2rem;">
-                      <img src="9.png" class="card-img-top" alt="..." style="height: 25rem; width: 20rem;">
-                    </div>
-          
-                    <div class="col-md-6">
-                      <div class="modal-body">
-                        <h3><b> Dalupiri, Luzon and Mindanao, Philippines</b></h3>
-                        <h5 style="font-size: 28px; padding-bottom: 2rem;">Conservation Status:<h5>
-                          <p>The huge population decline of this species in the past was due to excessive hunting for commercial use. Today, destruction of their habitat is the most serious threat to its survival, as rainforests are cleared throughout the region for rice fields to feed the increasing human population. The infamous 'saltwater' or estuarine crocodile, one of the world’s largest, with a reputation for being a man-eater, lives in the same area and undoubtedly contributes to intolerance by locals of any crocodile species, so the small Philippine crocodile is also often killed when encountered.</p>
-            
-                        </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>  
-              </div>
             </div>
-          </div>
-          
-          <div class="crocodile">
-           
-            <h4>4. Philippine Crocodile</h4>
-            <p>Isn't that a surprise? Crocodiles are usually feared because they are known as predators and even man-eating animals—so one would have never thought they would come to be endangered.</p>
-            <p>The critically endangered Philippine crocodile is said to have a diet of mostly fish, small mammals, birds, and snails—this, in turn, helps farmers in controlling those pests on the rice fields.</p>
-            <p>Compared to other crocodiles, the Philippine crocodile is smaller than usual—and grows to about an average of 5 feet long.</p>
-            <p>Learn more about Philippine crocodile <a href="https://www.londonzoo.org/whats-here/animals/philippine-crocodile" target="_blank"> Philippine crocodile page </a></p>
-          </div>
-
-
-          <div class="container text-center">
-            <div class="row">
-              <div class="col">
-                <img src="tamaraw.png" alt="" style="height: 25rem; width: 100%; margin-left: 2rem;">
-              </div>
-              <div class="col" style="padding-top: 2.5rem;">
-                <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal5" class="card-link">
-                  <div class="card hover-effect" style="width: 18rem; margin-left: 5rem;">
-                    <img src="10.png" class="card-img-top" alt="..." style="height: 15rem;">
-                    <div class="card-body">
-                      <h5 class="card-title">Click for more</h5>
-                    </div>
-                  </div>
-                </a>    
-              </div>
-            </div>
-          </div>
-          <!-- Modal -->
-          <div class="modal fade" id="exampleModal5" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" style="width: 100%;">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Tamaraw Located</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="container text-center">
-                  <div class="row">
-                    <div class="col-md-6" style="padding-bottom: 2rem; padding-left: 2rem;">
-                      <img src="11.png" class="card-img-top" alt="..." style="height: 25rem; width: 20rem;">
-                    </div>
-          
-                    <div class="col-md-6">
-                      <div class="modal-body">
-                        <h3><b> Mindoro Island, Philippines</b></h3>
-                        <h5 style="font-size: 28px; padding-bottom: 2rem;">Conservation Status:<h5>
-                          <p>The biggest threat to tamaraw is habitat loss due to infrastructure development, logging, and agriculture. Hunting for food and sustenance is another serious threat that affects the species' numbers. Tamarw also suffer from poaching and diseases from livestock.</p>
-                          <p>According to the IUCN Red List, the total population size of tamaraw is around 220-300 mature individuals. This species numbers are decreasing and it is currently classified as Critically Endangered (CR) on the IUCN Red List.</p>
-    ~
-                        </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>  
-              </div>
-            </div>
-          </div>
-
-          <div class="tamaraw">
-           
-            <h4>5. Tamaraw</h4>
-            <p>The Tamaraw is a dwarf buffalo that lives in only one place in the world—Mindoro Island, Philippines. It is classified as critically endangered. </p>
-            <p>They have shiny black hair, backward-facing horns, and stand at no taller than about 4 feet at the shoulders.</p>
-            <p>Despite being tiny, they're known for having quite a temper and will ready their horns against any strangers.</p>
-             </div>
         </div>
-    
+    </section>
     <section>
         <div class="help">
             <h3> <b>What can we do to help?</b></h3>
@@ -405,17 +440,17 @@
                     <h3 style="padding-bottom: 1rem;">Follow Us</h3>
                     <p  style="font-size: 16px;"> 
                         <a class="navbar-brand" href="#" style="margin: 0;">
-                            <img src="gmail.png" alt="Company Logo" style="height: 30px; width: auto;"> divture@gmail.com </img>
+                            <img src="./images/gmail.png" alt="Company Logo" style="height: 30px; width: auto;"> divture@gmail.com </img>
                           </a> 
                     </p>
                     <p style="font-size: 16px;">
                         <a class="navbar-brand" href="#" style="margin: 0;">
-                        <img src="fb.png" alt="Company Logo" style="height: 30px; width: auto;"> divturefbpage@yahoo.com </img>
+                        <img src="./images/fb.png" alt="Company Logo" style="height: 30px; width: auto;"> divturefbpage@yahoo.com </img>
                       </a>
                     </p>
                     <p style="font-size: 16px;">
                         <a class="navbar-brand" href="https://divture.github.io/Divture/index.html" style="margin: 0;">
-                            <img src="1.png" alt="Company Logo" style="height: 30px; width: auto;"> Divture Company </img>
+                            <img src="./images/1.png" alt="Company Logo" style="height: 30px; width: auto;"> Divture Company </img>
                           </a> 
                     </p> 
                   </div>
@@ -431,12 +466,12 @@
         </div>
     </section>
 </body>
-<script>
-  const myModal = document.getElementById('myModal')
-  const myInput = document.getElementById('myInput')
-
-  myModal.addEventListener('shown.bs.modal', () => {
-  myInput.focus()
-        })
-</script>
+<script src="script.js">
+    const myModal = document.getElementById('myModal')
+    const myInput = document.getElementById('myInput')
+  
+    myModal.addEventListener('shown.bs.modal', () => {
+    myInput.focus()
+          })
+  </script>
 </html>
