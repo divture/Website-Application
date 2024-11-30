@@ -1,0 +1,57 @@
+[
+    {
+        "title": "Tarsier",
+        "latitude": 9.863678,
+        "longitude": 124.200954,
+        "descript": "A definite tourist attraction when visiting the island, they are fascinating creatures with big eyes, tiny bodies, and long rat-like tails.",
+        "image": "images/tarsier.png",
+        "brief": "Tarsiers are tiny leaping primates found mostly in Bohol, Philippines",
+        "status": "According to Primate GCAP Report, the total population size of the Philippine tarsier is less than 2,500 individuals, including 700 tarsiers in Bohol’s Forest. Currently, this species is classified on the IUCN Red List as near threatened (NT) and its numbers continue to decrease.",
+        "photo": "images/tar.png",
+        "link": "https://www.ran.org/wildlife-factsheet/tarsier/"
+    },
+    {
+        "title": "Philippine Mouse Deer",
+        "latitude": 7.946300,
+        "longitude": 117.002571,
+        "descript": "The critically endangered Philippine mouse deer, also known as pilandok or the Balabac chevrotain, is a unique creature only found in the islands of Palawan. They are small in stature and resemble exactly what their name describes: a mix of a mouse and a deer.",
+        "image": "images/deer.png",
+        "brief": "The Philippine mouse-deer is a small, secretive ruminant native to the Balabac, Palawan,Philippines.",
+        "status": "The IUCN Red List and other sources don’t provide the total population of the Philippine mouse-deer. However, in 2006 it was reported that at least 21 free-living individuals occurred on Calauit Island. Currently, this species is classified as Endangered (EN) on the IUCN Red List, and its numbers today are decreasing.",
+        "photo": "images/tar1.png",
+        "link": "https://www.ran.org/wildlife-factsheet/tarsier/"
+    },
+    {
+        "title": "Philippine Forest Turtle",
+        "latitude": 10.362795,
+        "longitude": 119.275818,
+        "descript": "The critically endangered Philippine mouse deer, also known as pilandok or the Balabac chevrotain, is a unique creature only found in the islands of Palawan. They are small in stature and resemble exactly what their name describes: a mix of a mouse and a deer.",
+        "image": "images/turtle.png",
+        "brief": "The Philippine mouse-deer is a small, secretive ruminant native to the Balabac, Palawan,Philippines.",
+        "status": "The IUCN Red List and other sources don’t provide the total population of the Philippine mouse-deer. However, in 2006 it was reported that at least 21 free-living individuals occurred on Calauit Island. Currently, this species is classified as Endangered (EN) on the IUCN Red List, and its numbers today are decreasing.",
+        "photo": "images/tar2.png",
+        "link": "https://www.ran.org/wildlife-factsheet/tarsier/"
+    },
+    {
+        "title": "Philippine Crocodile",
+        "latitude": 19.084137,
+        "longitude": 121.221256,
+        "descript": "The critically endangered Philippine mouse deer, also known as pilandok or the Balabac chevrotain, is a unique creature only found in the islands of Palawan. They are small in stature and resemble exactly what their name describes: a mix of a mouse and a deer.",
+        "image": "images/crocodile.png",
+        "brief": "The Philippine mouse-deer is a small, secretive ruminant native to the Balabac, Palawan,Philippines.",
+        "status": "The IUCN Red List and other sources don’t provide the total population of the Philippine mouse-deer. However, in 2006 it was reported that at least 21 free-living individuals occurred on Calauit Island. Currently, this species is classified as Endangered (EN) on the IUCN Red List, and its numbers today are decreasing.",
+        "photo": "images/crocodile.png",
+        "link": "https://www.ran.org/wildlife-factsheet/tarsier/"
+    },
+    {
+        "title": "Philippine Tamaraw",
+        "latitude": 12.864607,
+        "longitude": 121.138000,
+        "descript": "The critically endangered Philippine mouse deer, also known as pilandok or the Balabac chevrotain, is a unique creature only found in the islands of Palawan. They are small in stature and resemble exactly what their name describes: a mix of a mouse and a deer.",
+        "image": "images/tamaraw.png",
+        "brief": "The Philippine mouse-deer is a small, secretive ruminant native to the Balabac, Palawan,Philippines.",
+        "status": "The IUCN Red List and other sources don’t provide the total population of the Philippine mouse-deer. However, in 2006 it was reported that at least 21 free-living individuals occurred on Calauit Island. Currently, this species is classified as Endangered (EN) on the IUCN Red List, and its numbers today are decreasing.",
+        "photo": "images/tar1.png",
+        "link": "https://www.ran.org/wildlife-factsheet/tarsier/"
+    }
+]

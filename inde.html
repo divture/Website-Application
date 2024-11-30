@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <title>Divture | Homepage</title>
+    <style>
+        *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+        }
+        body{
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: rgb(82 110 72);
+    color: rgb(255, 255, 255);
+    height: auto;
+        }
+        .navbar ul li a:hover {
+    color: #79b93e;
+        }
+        .navbar a {
+    color: rgb(255, 255, 255);
+        }
+        .applet-container{
+            margin-top: 4rem;
+            margin-left: 2rem;
+            width: 90%;
+            padding-right: 2rem;
+        }
+
+        .applet-flex-container > div {
+          margin-top: 0.5rem;
+        }
+
+        #map {
+            height: 35rem;
+            margin-top: 3rem;
+        }
+        .help{
+            margin-top: 4rem;
+            margin-left: 6rem;
+        }
+
+    </style>
+</head>
+<nav class="navbar navbar-expand-lg ">
+    <a class="navbar-brand" href="#" style="padding-left: 1rem;">
+        <img src="./images/1.png" alt="Company Logo" style="height: 30px; width: auto;"> Divture </img>
+      </a>   
+    <div class="container-fluid" style="padding-left: 30rem;">
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html" >Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="sustain.html" >Sustainability</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="mitigation.html" >Mitigation</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="talk.html"  >Talk about Endangered Animals</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="conservation.html"  >Conservation Status</a>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+  </nav>
+<body>
+    
+    <section>
+        <div class="" style="background-image: url(./images/2.png); height: 25rem; width: 100%; background-position-y: 80%; background-size: cover;">
+            <div class="box" style="height: 15rem; width: 100%; color: white; position: relative;">
+              <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); backdrop-filter: blur(3px); z-index: 0; margin-top: 5rem; padding: 3rem;">
+                <h1 style="position: relative; z-index: 1; font-size: 80px; text-align: center; padding-top: 1rem; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;"> Divture Endangered Species</h1>
+              </div>      
+            </div>
+          </div>
+    </section>
+    <div class="" style="width: 90%; margin-left: 2rem; margin-top: 2rem;">      
+        <p style="font-size: 18px; justify-content: baseline;">Our planet is home to a stunning array of wildlife, each species playing a crucial role in maintaining the balance of ecosystems. However, many of these animals are facing an uncertain future. </p>
+        <p style="font-size: 18px; justify-content: baseline;"> Endangered species are those whose populations have dwindled to dangerously low levels, putting them at risk of extinction. The causes are numerous—habitat loss, climate change, poaching, and invasive species are just a few of the threats that jeopardize their survival.</p> 
+        <h4 style="font-size: 42px; margin-bottom: 2rem;"> 5 Endangered Species in Philippines</h4>
+    </div>
+    <section>
+        <div class="applet-container">
+            <h3>Species Located</h3>
+            <div class="row">
+              <div class="col-4">
+                <form class="d-flex" role="search">
+                  <input class="form-control me-2" type="search" aria-label="Search" id="searchLocation" placeholder="Search locations...">
+                  <button class="btn " type="submit" style="background-color: rgb(158 223 156)">Search</button>
+                </form>
+                  <div class="applet-flex-container" id="location-container"></div>
+              </div>
+              <div class="col-8">
+                <div id="map"></div>
+              </div>   
+            </div>
+          </div>
+    </section>
+    <section>
+        <div class="help">
+            <h3> <b>What can we do to help?</b></h3>
+            <p style="width: 90%;">Awareness is the first step to helping. Spread the word! Most of us don't know the cost nature is paying for humanity's existence—some may even call it humanity's selfishness.</p>
+            <p style="width: 90%;">On our end, what we can do in our little way is to support causes that conserve wildlife, respect the rules whenever we happen to visit a wildlife reserve, and never buy wild animals as pets.</p>
+            <p>Do your part today!</p>
+        </div>
+    </section>
+    <section>
+        <div class="" style="margin-top: 2rem; height: 31vh; background-color: rgb(31 69 41); padding-top: 0.7rem; color: white;"> 
+            <div class="container text-center">
+                <div class="row">
+                  <div class="col">
+                    <h3 style="padding-bottom: 1rem;">Follow Us</h3>
+                    <p  style="font-size: 16px;"> 
+                        <a class="navbar-brand" href="#" style="margin: 0;">
+                            <img src="./images/gmail.png" alt="Company Logo" style="height: 30px; width: auto;"> divture@gmail.com </img>
+                          </a> 
+                    </p>
+                    <p style="font-size: 16px;">
+                        <a class="navbar-brand" href="#" style="margin: 0;">
+                        <img src="./images/fb.png" alt="Company Logo" style="height: 30px; width: auto;"> divturefbpage@yahoo.com </img>
+                      </a>
+                    </p>
+                    <p style="font-size: 16px;">
+                        <a class="navbar-brand" href="https://divture.github.io/Divture/index.html" style="margin: 0;">
+                            <img src="./images/1.png" alt="Company Logo" style="height: 30px; width: auto;"> Divture Company </img>
+                          </a> 
+                    </p> 
+                  </div>
+                  <div class="col">
+                    
+                  </div>
+                  <div class="col">
+                    <h3>The Company</h3>
+                    <p class="text-center" style="margin-top: 4rem; color: rgb(163, 163, 163); font-size: 16px;">@2024 Divture Company. All Rights Reserved.</p>
+                  </div>
+                </div>
+            
+        </div>
+    </section>
+</body>
+<script src="map.js"></script>
+</html>
