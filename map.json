@@ -19,39 +19,39 @@
         "brief": "The Philippine mouse-deer is a small, secretive ruminant native to the Balabac, Palawan,Philippines.",
         "status": "The IUCN Red List and other sources don’t provide the total population of the Philippine mouse-deer. However, in 2006 it was reported that at least 21 free-living individuals occurred on Calauit Island. Currently, this species is classified as Endangered (EN) on the IUCN Red List, and its numbers today are decreasing.",
         "photo": "images/tar1.png",
-        "link": "https://www.ran.org/wildlife-factsheet/tarsier/"
+        "link": "https://www.fondazioneslowfood.com/en/ark-of-taste-slow-food/philippine-mouse-deer/"
     },
     {
         "title": "Philippine Forest Turtle",
         "latitude": 10.362795,
         "longitude": 119.275818,
-        "descript": "The critically endangered Philippine mouse deer, also known as pilandok or the Balabac chevrotain, is a unique creature only found in the islands of Palawan. They are small in stature and resemble exactly what their name describes: a mix of a mouse and a deer.",
+        "descript": "Philippine forest turtles are known only from northern Palawan and surrounding islands. This includes the island of Dumaran where these turtles are still relatively abundant in creeks. In the areas of Taytay and San Vicente, it is believed their populations are declining sharply. Philippine forest turtles live in the lowland riparian forests in rivers, swamps, and streams.",
         "image": "images/turtle.png",
-        "brief": "The Philippine mouse-deer is a small, secretive ruminant native to the Balabac, Palawan,Philippines.",
-        "status": "The IUCN Red List and other sources don’t provide the total population of the Philippine mouse-deer. However, in 2006 it was reported that at least 21 free-living individuals occurred on Calauit Island. Currently, this species is classified as Endangered (EN) on the IUCN Red List, and its numbers today are decreasing.",
+        "brief": "The Philippine Forest Turtle, found in Palawan, is among the most critically endangered turtle species in the world.",
+        "status": "The IUCN Red List and other sources don’t provide the number of the Philippine forest turtle total population size. Currently, this species is classified as Critically Endangered (CR) on the IUCN Red List.",
         "photo": "images/tar2.png",
-        "link": "https://www.ran.org/wildlife-factsheet/tarsier/"
+        "link": "https://animalia.bio/philippine-forest-turtle"
     },
     {
         "title": "Philippine Crocodile",
         "latitude": 19.084137,
         "longitude": 121.221256,
-        "descript": "The critically endangered Philippine mouse deer, also known as pilandok or the Balabac chevrotain, is a unique creature only found in the islands of Palawan. They are small in stature and resemble exactly what their name describes: a mix of a mouse and a deer.",
+        "descript": "Philippine crocodiles is located in Dalupiri Island, Philippines and are relatively small reptiles, with broad snouts and thick bony plates on their backs. They have between 66 and 68 teeth which regularly fall out, to be replaced by new ones. Their golden brown color darkens as they grow.",
         "image": "images/crocodile.png",
-        "brief": "The Philippine mouse-deer is a small, secretive ruminant native to the Balabac, Palawan,Philippines.",
-        "status": "The IUCN Red List and other sources don’t provide the total population of the Philippine mouse-deer. However, in 2006 it was reported that at least 21 free-living individuals occurred on Calauit Island. Currently, this species is classified as Endangered (EN) on the IUCN Red List, and its numbers today are decreasing.",
-        "photo": "images/crocodile.png",
-        "link": "https://www.ran.org/wildlife-factsheet/tarsier/"
+        "brief": "The critically endangered Philippine crocodile primarily feeds on fish, small mammals, birds, and snails, helping farmers control pests in rice fields.",
+        "status": "According to the IUCN Red List, the total Philippine crocodile population size is around 92-137 mature individuals. Currently this species is classified as Critically Endangered (CR) and its numbers today are decreasing.",
+        "photo": "images/tar3.png",
+        "link": "https://www.londonzoo.org/whats-here/animals/philippine-crocodile"
     },
     {
         "title": "Philippine Tamaraw",
         "latitude": 12.864607,
         "longitude": 121.138000,
-        "descript": "The critically endangered Philippine mouse deer, also known as pilandok or the Balabac chevrotain, is a unique creature only found in the islands of Palawan. They are small in stature and resemble exactly what their name describes: a mix of a mouse and a deer.",
+        "descript": "Tamaraw are found only on the island of Mindoro in the Philippines. They prefer tropical highland forested areas and are usually found in thick brush, near open-canopied glades. Within their mountainous environment, tamaraws will usually be found not far from sources of water. They live in moist areas such as marshes and grasslands.",
         "image": "images/tamaraw.png",
-        "brief": "The Philippine mouse-deer is a small, secretive ruminant native to the Balabac, Palawan,Philippines.",
-        "status": "The IUCN Red List and other sources don’t provide the total population of the Philippine mouse-deer. However, in 2006 it was reported that at least 21 free-living individuals occurred on Calauit Island. Currently, this species is classified as Endangered (EN) on the IUCN Red List, and its numbers today are decreasing.",
-        "photo": "images/tar1.png",
+        "brief": "The Tamaraw is a dwarf buffalo that lives in only one place in the world—Mindoro Island, Philippines.",
+        "status": "According to the IUCN Red List, the total population size of tamaraw is around 220-300 mature individuals. This species numbers are decreasing and it is currently classified as Critically Endangered (CR) on the IUCN Red List.",
+        "photo": "images/tar4.png",
         "link": "https://www.ran.org/wildlife-factsheet/tarsier/"
     }
 ]

@@ -1,10 +1,12 @@
+// LeafletMap encapsulating all map-related functionality
 class LeafletMap {
     constructor(containerId, center, zoom) {
         this.map = L.map(containerId).setView(center, zoom);
         this.initTileLayer();
-        this.markers = []; // Store marker references to open popup later
+        this._markers = [];  // Encapsulated internal data (markers)
     }
 
+    // Method for adding a tile layer
     initTileLayer() {
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 7,
@@ -12,10 +14,19 @@ class LeafletMap {
         }).addTo(this.map);
     }
 
-    addMarker(lat, lng, title, descript, image, status, link) {
-        const marker = L.marker([lat, lng]).addTo(this.map);
+      // Add a marker to the map (Abstraction for map logic)
+      addMarker(lat, lng, title, descript, image, status, link) {
+        // Create a custom icon
+        const customIcon = L.icon({
+            iconUrl: 'images/marker.png', // Path to your custom icon image
+            iconSize: [32, 32],  // Size of the icon
+            iconAnchor: [16, 32],  // Point of the icon which will correspond to marker's location
+            popupAnchor: [0, -32]  // Adjust the popup position
+        });
 
-        // Ensure the HTML syntax is correct (no semicolon in the div tag)
+        // Create a marker with the custom icon
+        const marker = L.marker([lat, lng], { icon: customIcon }).addTo(this.map);
+
         const popupContent = `
             <div class="popup-content" style="width: 20rem;">
                 <h3>${title}</h3>
@@ -28,18 +39,19 @@ class LeafletMap {
         `;
 
         marker.bindPopup(popupContent);
-        this.markers.push({ lat, lng, title, marker, descript, status, link });
+        this._markers.push({ lat, lng, title, marker, descript, status, link });  // Encapsulated marker data
         return marker;
     }
-
+    // Open a popup for a specific marker
     openPopup(lat, lng) {
-        const marker = this.markers.find(m => m.lat === lat && m.lng === lng);
+        const marker = this._markers.find(m => m.lat === lat && m.lng === lng);
         if (marker) {
             this.map.setView([lat, lng], 18); // Zoom to the marker's location
             marker.marker.openPopup(); // Open the popup
         }
     }
 
+    // Load markers from a JSON source (Abstraction for data handling)
     loadMarkersFromJson(url) {
         fetch(url)
             .then(response => response.json())
@@ -60,6 +72,60 @@ class LeafletMap {
     }
 }
 
+// Class for rendering and managing location data
+class LocationRenderer {
+    constructor(containerId, searchInputId, mapInstance) {
+        this.container = document.getElementById(containerId);
+        this.searchInput = document.getElementById(searchInputId);
+        this.mapInstance = mapInstance;
+        this.appletData = [];
+        this.filteredData = [];
+        this.searchInput.addEventListener('input', () => this.filterLocations());
+    }
+
+    // Fetch location data from an external source
+    fetchLocationData(url) {
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                this.appletData = data;
+                this.filteredData = data;  // Initially show all locations
+                this.renderLocation(this.filteredData);  // Render all initially
+            })
+            .catch(error => console.error('Error loading location data:', error));
+    }
+
+    // Render location data cards
+    renderLocation(data) {
+        this.container.innerHTML = '';  // Clear the container before rendering new items
+        data.forEach(location => {
+            const locationCard = new LocationCard(
+                location.title, 
+                location.latitude, 
+                location.longitude, 
+                location.descript, 
+                location.image, 
+                location.brief, 
+                location.photo, 
+                location.link
+            );
+            const cardElement = locationCard.createCard();
+            this.container.appendChild(cardElement);
+        });
+    }
+
+    // Filter locations based on search input
+    filterLocations() {
+        const query = this.searchInput.value.toLowerCase();  // Get search query
+        this.filteredData = this.appletData.filter(location =>
+            location.title.toLowerCase().includes(query) ||
+            (location.descript && location.descript.toLowerCase().includes(query))  // Check description as well
+        );
+        this.renderLocation(this.filteredData);  // Render the filtered data
+    }
+}
+
+// Base Class for LocationCard
 class LocationCard {
     constructor(title, lat, lng, descript = "No description available", image, brief = "Brief info not available", photo, link) {
         this.title = title;
@@ -68,22 +134,22 @@ class LocationCard {
         this.descript = descript;
         this.image = image;
         this.brief = brief;
-        this.photo = photo; 
-        this.link = link;   
+        this.photo = photo;
+        this.link = link;
     }
 
     createCard() {
         const cardDiv = document.createElement('div');
         cardDiv.className = 'card location-card';
         cardDiv.innerHTML = `
-            <div class="card-body" style="background-color: rgb(232 236 215);">
+            <div class="card-body" style="background-color: rgb(192 199 140);">
               <div class="row">
                 <div class="col-sm-4">
                     <img src="${this.photo}" class="card-img-top" alt="..."> <!-- Use photo here -->
                 </div>
                 <div class="col-sm-8">
                      <h5 class="card-title">${this.title}</h5>
-                     <p class="card-text" style="font-size: 14px;">${this.brief}</p> <!-- Use the brief here -->
+                     <p class="card-text" style="font-size: 12px;">${this.brief}</p> <!-- Use the brief here -->
                 </div>        
               </div>
             </div>
@@ -98,65 +164,43 @@ class LocationCard {
     }
 }
 
-class LocationRenderer {
-    constructor(containerId, searchInputId, mapInstance) {
-        this.container = document.getElementById(containerId);
-        this.searchInput = document.getElementById(searchInputId);
-        this.mapInstance = mapInstance;
-        this.appletData = [];
-        this.filteredData = [];
-        this.searchInput.addEventListener('input', () => this.filterLocations());
+// A specialized LocationCard subclass for a different type of location (could be a specific category, etc.)
+class DetailedLocationCard extends LocationCard {
+    constructor(title, lat, lng, descript, image, brief, photo, link, additionalDetails) {
+        super(title, lat, lng, descript, image, brief, photo, link);  // Call parent class constructor
+        this.additionalDetails = additionalDetails;  // Additional details specific to this subclass
     }
 
-    fetchLocationData(url) {
-        fetch(url)
-            .then(response => response.json())
-            .then(data => {
-                this.appletData = data;
-                this.filteredData = data;  // initially show all locations
-                this.renderLocation(this.filteredData);  // render all initially
-            })
-            .catch(error => console.error('Error loading location data:', error));
-    }
+    // Override createCard to show more details
+    createCard() {
+        const cardDiv = super.createCard();  // Get the basic card HTML from the parent class
 
-    renderLocation(data) {
-        this.container.innerHTML = '';  // clear the container before rendering new items
-        data.forEach(location => {
-            const locationCard = new LocationCard(
-                location.title, 
-                location.latitude, 
-                location.longitude, 
-                location.descript, 
-                location.image, 
-                location.brief, 
-                location.photo, // Pass photo
-                location.link // Pass link
-            );
-            const cardElement = locationCard.createCard();
-            this.container.appendChild(cardElement);
-        });
-    }
+        // Add more details to the card
+        const detailsDiv = document.createElement('div');
+        detailsDiv.innerHTML = `<p><strong>Additional Info:</strong> ${this.additionalDetails}</p>`;
+        cardDiv.appendChild(detailsDiv);
 
-    filterLocations() {
-        const query = this.searchInput.value.toLowerCase();  // get search query
-        this.filteredData = this.appletData.filter(location =>
-            location.title.toLowerCase().includes(query) ||
-            (location.descript && location.descript.toLowerCase().includes(query))  // check description as well
-        );
-        this.renderLocation(this.filteredData);  // render the filtered data
+        return cardDiv;
     }
 }
 
-// Function to move map and open popup based on button click
-function moveToLocation(lat, lng, title) {
-    myMap.openPopup(lat, lng);  // Open popup for that location
-    myMap.map.setView([lat, lng], 18);  // Zoom in on the location
-}
 
 const myMap = new LeafletMap('map', [8.360004, 124.868419], 14);
-
-// Load markers from an external JSON file
 myMap.loadMarkersFromJson('map.json');
 
 const locationRenderer = new LocationRenderer('location-container', 'searchLocation', myMap);
 locationRenderer.fetchLocationData('map.json');
+
+// 1. **Encapsulation**: LeafletMap encapsulates all map-related functionality and hides internal markers data (`_markers`).
+//    It provides public methods like `addMarker()`, `openPopup()`, and `loadMarkersFromJson()` to interact with the map.
+
+// 2. **Abstraction**: In `LeafletMap`, complex map operations like adding markers and binding popups are abstracted into 
+//    simple methods like `addMarker()` and `openPopup()` so users of the class don't need to worry about implementation details.
+
+// 3. **Inheritance**: `DetailedLocationCard` class inherits from the `LocationCard` class and extends it by adding more 
+//    details with the `additionalDetails` property. It overrides the `createCard()` method to provide extended functionality.
+
+
+// 4. **Polymorphism**: The `createCard()` method is polymorphic: the `DetailedLocationCard` class overrides this method 
+//    to include additional information (like `additionalDetails`) while still retaining the general functionality from 
+//    `LocationCard` class.
