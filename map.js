@@ -190,17 +190,3 @@ myMap.loadMarkersFromJson('map.json');
 
 const locationRenderer = new LocationRenderer('location-container', 'searchLocation', myMap);
 locationRenderer.fetchLocationData('map.json');
-
-// 1. **Encapsulation**: LeafletMap encapsulates all map-related functionality and hides internal markers data (`_markers`).
-//    It provides public methods like `addMarker()`, `openPopup()`, and `loadMarkersFromJson()` to interact with the map.
-
-// 2. **Abstraction**: In `LeafletMap`, complex map operations like adding markers and binding popups are abstracted into 
-//    simple methods like `addMarker()` and `openPopup()` so users of the class don't need to worry about implementation details.
-
-// 3. **Inheritance**: `DetailedLocationCard` class inherits from the `LocationCard` class and extends it by adding more 
-//    details with the `additionalDetails` property. It overrides the `createCard()` method to provide extended functionality.
-
-
-// 4. **Polymorphism**: The `createCard()` method is polymorphic: the `DetailedLocationCard` class overrides this method 
-//    to include additional information (like `additionalDetails`) while still retaining the general functionality from 
-//    `LocationCard` class.
